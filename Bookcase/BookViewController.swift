@@ -16,7 +16,7 @@ protocol BookViewControllerDelegate {
 private let isbnKey = "ISBN"
 
 class BookViewController: UIViewController {
-
+    var booksService: BooksService = GoogleBooksService()
     @IBOutlet weak var bookCover: UIImageView!
     @IBOutlet weak var isbnStackView: UIStackView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -181,5 +181,20 @@ extension BookViewController:BarcodeViewControllerDelegate {
     func foundBarcode(barcode:String) {
         isbnTextField.text = barcode
         playBarcodeSound()
+        
+        booksService.getBook(with: barcode) { scannedBook, error in
+            if error != nil {
+                print("scan book service error")
+                return
+            } else if let scannedBook = scannedBook {
+                self.titleTextField.text = scannedBook.title
+                self.authorTextField.text = scannedBook.author
+                self.bookCover.image = scannedBook.cover
+                self.coverToSave = scannedBook.cover
+                self.saveButton.isEnabled = true
+            } else {
+                // Deal with no error, no book!
+            }
+        }
     }
 }

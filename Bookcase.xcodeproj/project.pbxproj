@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A1C37A9F2B7A4891004D5FBF /* GoogleBooksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C37A9E2B7A4891004D5FBF /* GoogleBooksService.swift */; };
+		A1C37AA22B7A8888004D5FBF /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = A1C37AA12B7A8888004D5FBF /* SwiftyJSON */; };
 		B9019F7B1CE229D500CAE744 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9019F7A1CE229D500CAE744 /* AppDelegate.swift */; };
 		B9019F7D1CE229D500CAE744 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9019F7C1CE229D500CAE744 /* BookViewController.swift */; };
 		B9019F801CE229D500CAE744 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9019F7E1CE229D500CAE744 /* Main.storyboard */; };
@@ -45,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A1C37A9E2B7A4891004D5FBF /* GoogleBooksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBooksService.swift; sourceTree = "<group>"; };
 		B9019F771CE229D500CAE744 /* Bookcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9019F7A1CE229D500CAE744 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9019F7C1CE229D500CAE744 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1C37AA22B7A8888004D5FBF /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +170,7 @@
 			children = (
 				B9EADEAF1D4AD04100F125F3 /* BooksManager.swift */,
 				B9EADEAD1D4A7BE800F125F3 /* Book.swift */,
+				A1C37A9E2B7A4891004D5FBF /* GoogleBooksService.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -214,6 +219,9 @@
 			dependencies = (
 			);
 			name = Bookcase;
+			packageProductDependencies = (
+				A1C37AA12B7A8888004D5FBF /* SwiftyJSON */,
+			);
 			productName = Bookcase;
 			productReference = B9019F771CE229D500CAE744 /* Bookcase.app */;
 			productType = "com.apple.product-type.application";
@@ -266,7 +274,6 @@
 				TargetAttributes = {
 					B9019F761CE229D500CAE744 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 5M6U4VTSB8;
 						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.iCloud = {
@@ -296,6 +303,9 @@
 				Base,
 			);
 			mainGroup = B9019F6E1CE229D500CAE744;
+			packageReferences = (
+				A1C37AA02B7A8888004D5FBF /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+			);
 			productRefGroup = B9019F781CE229D500CAE744 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -346,6 +356,7 @@
 				B9E07F381DA7FAC8002D782C /* Star.swift in Sources */,
 				B99AC7171D5E57C300AE5861 /* TabBarController.swift in Sources */,
 				B94892871D5AB2C400BC9BEB /* BookCollectionViewCell.swift in Sources */,
+				A1C37A9F2B7A4891004D5FBF /* GoogleBooksService.swift in Sources */,
 				B9019F7D1CE229D500CAE744 /* BookViewController.swift in Sources */,
 				B9019F7B1CE229D500CAE744 /* AppDelegate.swift in Sources */,
 				B975A6571D9D79B800791C42 /* BarcodeViewController.swift in Sources */,
@@ -517,9 +528,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5M6U4VTSB8;
+				DEVELOPMENT_TEAM = 7NYZL28FP4;
 				INFOPLIST_FILE = Bookcase/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.interactivecoconut.Bookcase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -530,12 +545,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5M6U4VTSB8;
+				DEVELOPMENT_TEAM = 7NYZL28FP4;
 				INFOPLIST_FILE = Bookcase/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.interactivecoconut.Bookcase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -545,7 +565,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = BookcaseTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.interactivecoconut.BookcaseTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -558,10 +582,15 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = BookcaseTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.interactivecoconut.BookcaseTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bookcase.app/Bookcase";
 			};
@@ -571,7 +600,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = BookcaseUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.interactivecoconut.BookcaseUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -583,10 +616,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = BookcaseUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.interactivecoconut.BookcaseUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = Bookcase;
 			};
@@ -632,6 +670,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A1C37AA02B7A8888004D5FBF /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A1C37AA12B7A8888004D5FBF /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1C37AA02B7A8888004D5FBF /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B9019F6F1CE229D500CAE744 /* Project object */;
 }
