@@ -28,13 +28,13 @@ class GoogleBooksService: NSObject, BooksService, URLSessionDelegate {
             completionHandler(nil, nil)
         }
     }
-    
+    var task: URLSessionDownloadTask?
     func loadCover(book: Book,
                    thumbnailURL: String,
                    completionHandler: @escaping (Book?, Error?) -> Void) {
         var book = book
         guard let url = URL(string: thumbnailURL) else { return }
-        let task = session.downloadTask(with: url, completionHandler: { temporayURL, response, error in
+        task = session.downloadTask(with: url, completionHandler: { temporayURL, response, error in
             if let imageURL = temporayURL,
                let data = try? Data(contentsOf: imageURL),
                 let image = UIImage(data: data) {
@@ -42,7 +42,7 @@ class GoogleBooksService: NSObject, BooksService, URLSessionDelegate {
             }
             completionHandler(book, error)
         })
-        task.resume()
+        task?.resume()
     }
     
     private func parseJSON(data: Data, completionHandler: @escaping (Book?, Error?) -> Void) {
@@ -90,6 +90,6 @@ class GoogleBooksService: NSObject, BooksService, URLSessionDelegate {
     }
     
     func cancel() {
-        
+        task?.cancel()
     }
 }

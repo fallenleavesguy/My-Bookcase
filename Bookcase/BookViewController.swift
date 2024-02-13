@@ -76,6 +76,7 @@ class BookViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         NotificationCenter.default.removeObserver(self)
+        booksService.cancel()
     }
     @objc func keyboardFrameChanges(notification:Notification) {
         //get keyboard height
@@ -181,8 +182,9 @@ extension BookViewController:BarcodeViewControllerDelegate {
     func foundBarcode(barcode:String) {
         isbnTextField.text = barcode
         playBarcodeSound()
-        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         booksService.getBook(with: barcode) { scannedBook, error in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             if error != nil {
                 print("scan book service error")
                 return
