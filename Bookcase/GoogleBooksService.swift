@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 import SwiftyJSON
 
 protocol BooksService {
@@ -18,12 +19,30 @@ class GoogleBooksService: NSObject, BooksService, URLSessionDelegate {
                                  completionHandler: @escaping (Book?, Error?) -> Void) {
         let dataAsJSON = try! JSON(data: data)
         if let title = dataAsJSON["items"][0]["volumeInfo"]["title"].string,
-           let authors = dataAsJSON["items"][0]["volumeInfo"]["authors"].arrayObject as? [String] {
+           let authors = dataAsJSON["items"][0]["volumeInfo"]["authors"].arrayObject as? [String],
+           let thumbnailURL = dataAsJSON["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"].string {
             let book = Book(title: title, author: authors.joined(separator: ","), rating: 0, isbn: "0", notes: "")
-            completionHandler(book, nil)
+            loadCover(book: book, thumbnailURL: thumbnailURL, completionHandler: completionHandler)
+//            completionHandler(book, nil)
         } else {
             completionHandler(nil, nil)
         }
+    }
+    
+    func loadCover(book: Book,
+                   thumbnailURL: String,
+                   completionHandler: @escaping (Book?, Error?) -> Void) {
+        var book = book
+        guard let url = URL(string: thumbnailURL) else { return }
+        let task = session.downloadTask(with: url, completionHandler: { temporayURL, response, error in
+            if let imageURL = temporayURL,
+               let data = try? Data(contentsOf: imageURL),
+                let image = UIImage(data: data) {
+                book.cover = image
+            }
+            completionHandler(book, error)
+        })
+        task.resume()
     }
     
     private func parseJSON(data: Data, completionHandler: @escaping (Book?, Error?) -> Void) {
